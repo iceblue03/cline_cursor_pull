@@ -57,3 +57,28 @@ export function opencodeDataDir(environment = runtimeEnvironment()): string {
 		environment.joinPath(userHome(environment), ".local", "share");
 	return environment.joinPath(dataHome, "opencode");
 }
+
+export function cursorUserDir(environment = runtimeEnvironment()): string {
+	const customDir = nonEmpty(environment.env.CURSOR_USER_DIR);
+	if (customDir) return customDir;
+
+	if (environment.platform === "darwin") {
+		return environment.joinPath(
+			userHome(environment),
+			"Library",
+			"Application Support",
+			"Cursor",
+			"User",
+		);
+	}
+	if (environment.platform === "win32") {
+		const appData = nonEmpty(environment.env.APPDATA);
+		const baseDir = appData ?? environment.joinPath(userHome(environment), "AppData", "Roaming");
+		return environment.joinPath(baseDir, "Cursor", "User");
+	}
+	// Linux / other Posix
+	const configHome =
+		nonEmpty(environment.env.XDG_CONFIG_HOME) ??
+		environment.joinPath(userHome(environment), ".config");
+	return environment.joinPath(configHome, "Cursor", "User");
+}

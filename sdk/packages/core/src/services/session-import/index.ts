@@ -7,6 +7,7 @@ export {
 	type OpencodeAdapterOptions,
 	OpencodeImportAdapter,
 } from "./opencode";
+export { type CursorAdapterOptions, CursorImportAdapter } from "./cursor";
 export {
 	IMPORT_MISSING_TOOL_RESULT_TEXT,
 	sanitizeImportedMessages,

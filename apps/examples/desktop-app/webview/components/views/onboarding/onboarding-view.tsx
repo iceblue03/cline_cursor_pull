@@ -827,7 +827,7 @@ function ConnectStep({
 /**
  * Offers to bring session history over from other coding tools. Scans once
  * on entry and silently advances when there is nothing to import, so only
- * people who actually have Claude Code / Codex / opencode history ever see
+ * people who actually have Claude Code / Codex / opencode / Cursor history ever see
  * this step. After a successful import, onFinish closes onboarding directly
  * — a second "you're all set" screen right after the import confirmation
  * reads as a loop, not a finish.
